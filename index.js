@@ -58,9 +58,8 @@ function initScrollAnimations() {
   animElements.forEach((el, index) => {
     el.style.opacity = "0";
     el.style.transform = "translateY(32px)";
-    el.style.transition = `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${
-      (index % 3) * 0.1
-    }s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${(index % 3) * 0.1}s`;
+    el.style.transition = `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${(index % 3) * 0.1
+      }s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${(index % 3) * 0.1}s`;
     observer.observe(el);
   });
 }
