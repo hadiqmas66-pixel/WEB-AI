@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transaksi &amp; Pembayaran — 911 Avenue</title>
+  <meta name="description" content="Halaman transaksi resmi 911 Avenue dengan metode pembayaran COD dan transfer bank BCA, BRI, BNI, Bank Jatim." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="Style.css" />
+</head>
+
+<body class="checkout-body">
+
+  <!-- ===== CHECKOUT HEADER ===== -->
+  <header class="checkout-header">
+    <div class="checkout-header-inner">
+      <a href="index.html" class="logo">911<span>Avenue</span></a>
+      <div class="checkout-steps">
+        <div class="step-item completed">
+          <span class="step-num">✓</span>
+          <span class="step-text">Keranjang</span>
+        </div>
+        <span class="step-line active"></span>
+        <div class="step-item active">
+          <span class="step-num">2</span>
+          <span class="step-text">Pengiriman &amp; Pembayaran</span>
+        </div>
+        <span class="step-line"></span>
+        <div class="step-item">
+          <span class="step-num">3</span>
+          <span class="step-text">Selesai</span>
+        </div>
+      </div>
+      <a href="index.html#shop" class="back-to-shop-link">
+        &larr; Lanjut Belanja
+      </a>
+    </div>
+  </header>
+
+  <!-- ===== MAIN CHECKOUT SECTION ===== -->
+  <main class="checkout-main">
+    <div class="checkout-container">
+
+      <!-- Left Column: Forms & Payment Methods -->
+      <div class="checkout-left">
+
+        <!-- Form Pengiriman -->
+        <div class="checkout-card">
+          <div class="card-title-row">
+            <div class="card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </div>
+            <div>
+              <h2 class="card-heading">Informasi Pengiriman</h2>
+              <p class="card-subheading">Masukkan data penerima untuk pengiriman pesanan Anda</p>
+            </div>
+          </div>
+
+          <form id="shippingForm" class="checkout-form" onsubmit="return false;">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="custName">Nama Lengkap <span class="req">*</span></label>
+                <input type="text" id="custName" placeholder="Contoh: Budi Santoso" required />
+              </div>
+              <div class="form-group">
+                <label for="custPhone">Nomor WhatsApp / HP <span class="req">*</span></label>
+                <input type="tel" id="custPhone" placeholder="Contoh: 081234567890" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="custEmail">Alamat Email <span class="req">*</span></label>
+                <input type="email" id="custEmail" placeholder="nama@email.com" required />
+              </div>
+              <div class="form-group">
+                <label for="custCity">Kota / Kabupaten <span class="req">*</span></label>
+                <input type="text" id="custCity" placeholder="Contoh: Probolinggo, Jawa Timur" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="custAddress">Alamat Lengkap (Jalan, RT/RW, No. Rumah, Patokan) <span class="req">*</span></label>
+              <textarea id="custAddress" rows="3" placeholder="Jl. Panglima Sudirman No. 911, RT 02/RW 04, Kel. Sukabumi, Kec. Mayangan" required></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="custPostal">Kode Pos</label>
+                <input type="text" id="custPostal" placeholder="67211" />
+              </div>
+              <div class="form-group">
+                <label for="custCourier">Pilihan Ekspedisi</label>
+                <select id="custCourier" class="form-select">
+                  <option value="J&T Express (Bebas Ongkir)">J&amp;T Express — Bebas Ongkir (Promo)</option>
+                  <option value="JNE Reguler">JNE Reguler — Bebas Ongkir (Promo)</option>
+                  <option value="SiCepat Halu">SiCepat Halu — Bebas Ongkir (Promo)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="custNotes">Catatan Tambahan untuk Kurir (Opsional)</label>
+              <input type="text" id="custNotes" placeholder="Titipkan ke satpam / pagar warna hitam" />
+            </div>
+          </form>
+        </div>
+
+        <!-- Metode Pembayaran Card -->
+        <div class="checkout-card payment-method-card">
+          <div class="card-title-row">
+            <div class="card-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+                <line x1="1" y1="10" x2="23" y2="10" />
+              </svg>
+            </div>
+            <div>
+              <h2 class="card-heading">Metode Pembayaran</h2>
+              <p class="card-subheading">Pilih metode pembayaran aman yang Anda inginkan</p>
+            </div>
+          </div>
+
+          <!-- Pilihan Metode (COD & Bank Transfer) -->
+          <div class="payment-options-grid" id="paymentOptions">
+
+            <!-- 1. COD (Bayar di Tempat) -->
+            <label class="payment-option active" data-method="cod">
+              <input type="radio" name="paymentMethod" value="cod" checked />
+              <div class="option-check"></div>
+              <div class="option-icon-wrap cod-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="6" width="20" height="12" rx="2" />
+                  <circle cx="12" cy="12" r="2" />
+                  <path d="M6 12h.01M18 12h.01" />
+                </svg>
+              </div>
+              <div class="option-text">
+                <strong class="option-title">COD (Cash on Delivery)</strong>
+                <span class="option-desc">Bayar tunai di tempat ke kurir saat paket sampai di tangan Anda</span>
+              </div>
+              <span class="option-badge">Praktis</span>
+            </label>
+
+            <!-- 2. Transfer Bank BCA -->
+            <label class="payment-option" data-method="bca">
+              <input type="radio" name="paymentMethod" value="bca" />
+              <div class="option-check"></div>
+              <div class="option-icon-wrap bank-badge bca-badge">
+                BCA
+              </div>
+              <div class="option-text">
+                <strong class="option-title">Transfer Bank BCA</strong>
+                <span class="option-desc">BCA Mobile / myBCA / KlikBCA / ATM BCA</span>
+              </div>
+              <span class="option-badge">Otomatis</span>
+            </label>
+
+            <!-- 3. Transfer Bank BRI -->
+            <label class="payment-option" data-method="bri">
+              <input type="radio" name="paymentMethod" value="bri" />
+              <div class="option-check"></div>
+              <div class="option-icon-wrap bank-badge bri-badge">
+                BRI
+              </div>
+              <div class="option-text">
+                <strong class="option-title">Transfer Bank BRI</strong>
+                <span class="option-desc">BRImo / Internet Banking / ATM BRI</span>
+              </div>
+              <span class="option-badge">Otomatis</span>
+            </label>
+
+            <!-- 4. Transfer Bank BNI -->
+            <label class="payment-option" data-method="bni">
+              <input type="radio" name="paymentMethod" value="bni" />
+              <div class="option-check"></div>
+              <div class="option-icon-wrap bank-badge bni-badge">
+                BNI
+              </div>
+              <div class="option-text">
+                <strong class="option-title">Transfer Bank BNI</strong>
+                <span class="option-desc">BNI Mobile Banking / ATM BNI</span>
+              </div>
+              <span class="option-badge">Otomatis</span>
+            </label>
+
+            <!-- 5. Transfer Bank Jatim -->
+            <label class="payment-option" data-method="jatim">
+              <input type="radio" name="paymentMethod" value="jatim" />
+              <div class="option-check"></div>
+              <div class="option-icon-wrap bank-badge jatim-badge">
+                JATIM
+              </div>
+              <div class="option-text">
+                <strong class="option-title">Transfer Bank Jatim</strong>
+                <span class="option-desc">JConnect Mobile / ATM Bank Jatim</span>
+              </div>
+              <span class="option-badge">Regional</span>
+            </label>
+
+          </div>
+
+          <!-- Dynamic Payment Details Box -->
+          <div class="payment-instructions-box" id="paymentDetailsBox">
+            <!-- Populated dynamically via JavaScript -->
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Right Column: Order Summary & Place Order -->
+      <div class="checkout-right">
+        <div class="checkout-summary-card">
+          <div class="summary-header">
+            <h3 class="summary-title">Ringkasan Pesanan</h3>
+            <span class="items-count" id="summaryCount">0 Barang</span>
+          </div>
+
+          <!-- Item List -->
+          <div class="summary-items-list" id="summaryItemsList">
+            <!-- Dynamically populated via JS -->
+          </div>
+
+          <!-- Promo Code Box -->
+          <div class="promo-code-box">
+            <div class="promo-input-row">
+              <input type="text" id="promoInput" placeholder="Kode Promo (cth: AVENUE10)" />
+              <button type="button" id="applyPromoBtn" class="btn-apply-promo">Terapkan</button>
+            </div>
+            <p id="promoMessage" class="promo-msg" style="display: none;"></p>
+          </div>
+
+          <!-- Cost Calculation Breakdown -->
+          <div class="cost-breakdown">
+            <div class="cost-row">
+              <span class="cost-lbl">Subtotal Produk</span>
+              <span class="cost-val" id="subtotalVal">$0.00</span>
+            </div>
+            <div class="cost-row">
+              <span class="cost-lbl">Biaya Pengiriman</span>
+              <span class="cost-val text-success">
+                <span class="strikethrough">$5.00</span> GRATIS
+              </span>
+            </div>
+            <div class="cost-row discount-row" id="discountRow" style="display: none;">
+              <span class="cost-lbl">Potongan Promo (<span id="discountPercent">10%</span>)</span>
+              <span class="cost-val text-discount" id="discountVal">-$0.00</span>
+            </div>
+            <div class="cost-row total-row">
+              <span class="total-lbl">Total Tagihan</span>
+              <div class="total-val-box">
+                <span class="total-primary" id="totalPrimaryVal">$0.00</span>
+                <span class="total-idr" id="totalIdrVal">~ Rp 0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Order Button -->
+          <button type="button" class="btn-place-order" id="btnPlaceOrder">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            Konfirmasi &amp; Buat Pesanan
+          </button>
+
+          <!-- Security Guarantees -->
+          <div class="checkout-guarantees">
+            <div class="guarantee-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+              <span>Transaksi 100% Aman &amp; Terenkripsi</span>
+            </div>
+            <div class="guarantee-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>Jaminan Kualitas Asli 911 Avenue Official</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===== MODAL BUKTI TRANSAKSI & INVOICE SUKSES ===== -->
+  <div class="order-success-modal-overlay" id="orderSuccessModal">
+    <div class="order-invoice-card">
+      <div class="invoice-header">
+        <div class="success-icon-badge">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="3">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </div>
+        <h2 class="invoice-title">Pesanan Berhasil Dibuat!</h2>
+        <p class="invoice-subtitle">Terima kasih telah berbelanja di 911 Avenue Official Store</p>
+      </div>
+
+      <div class="invoice-details-card" id="invoiceDetailsCard">
+        <!-- Filled dynamically via JS -->
+      </div>
+
+      <div class="invoice-actions">
+        <button type="button" class="btn-copy-invoice" onclick="printOrSaveInvoice()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 9V2h12v7" />
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+            <path d="M6 14h12v8H6z" />
+          </svg>
+          Cetak Nota Transaksi
+        </button>
+        <a href="index.html" class="btn-back-home">
+          Kembali ke Beranda &rarr;
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="products-data.js"></script>
+  <script src="cart.js"></script>
+  <script>
+    // ── Global Toast ──
+    function showToast(message) {
+      const existing = document.querySelector(".toast");
+      if (existing) existing.remove();
+
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.textContent = message;
+      document.body.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.add("show");
+      });
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.remove(), 400);
+      }, 2500);
+    }
+
+    // ── Payment Methods Database ──
+    const PAYMENT_DATA = {
+      cod: {
+        title: "COD (Cash on Delivery / Bayar di Tempat)",
+        badge: "Bayar di Tempat",
+        iconType: "cod",
+        instruction: "Siapkan uang tunai pas kepada kurir saat pesanan sampai di alamat pengiriman Anda.",
+        accountNumber: null,
+        accountName: null,
+        notes: "Pastikan nomor HP/WhatsApp selalu aktif agar kurir dapat mengonfirmasi pengiriman sebelum tiba."
+      },
+      bca: {
+        title: "Bank Central Asia (BCA)",
+        badge: "Bank BCA",
+        iconType: "bca",
+        instruction: "Silakan transfer total tagihan ke rekening resmi Bank BCA kami berikut ini:",
+        bankName: "BCA",
+        accountNumber: "811-091-2345",
+        accountName: "911 AVENUE OFFICIAL",
+        notes: "Sertakan nomor invoice pada berita transfer. Konfirmasi otomatis akan diproses dalam 1-5 menit."
+      },
+      bri: {
+        title: "Bank Rakyat Indonesia (BRI)",
+        badge: "Bank BRI",
+        iconType: "bri",
+        instruction: "Silakan transfer total tagihan melalui BRImo atau ATM ke rekening resmi Bank BRI kami:",
+        bankName: "BRI",
+        accountNumber: "0123-01-089110-50-8",
+        accountName: "911 AVENUE OFFICIAL",
+        notes: "Transfer via sesama BRI atau Virtual Account dapat diverifikasi secara instan 24 jam."
+      },
+      bni: {
+        title: "Bank Negara Indonesia (BNI)",
+        badge: "Bank BNI",
+        iconType: "bni",
+        instruction: "Silakan transfer total tagihan ke rekening resmi Bank BNI kami di bawah ini:",
+        bankName: "BNI",
+        accountNumber: "988-9110-2345-6789",
+        accountName: "911 AVENUE OFFICIAL",
+        notes: "Gunakan fasilitas BNI Mobile Banking atau ATM BNI untuk proses verifikasi yang lebih cepat."
+      },
+      jatim: {
+        title: "PT Bank Pembangunan Daerah Jawa Timur (Bank Jatim)",
+        badge: "Bank Jatim",
+        iconType: "jatim",
+        instruction: "Silakan lakukan transfer ke rekening resmi Bank Jatim kami melalui JConnect atau ATM:",
+        bankName: "BANK JATIM",
+        accountNumber: "018-201-9110",
+        accountName: "911 AVENUE OFFICIAL STORE",
+        notes: "Dukungan penuh transaksi regional Jawa Timur dengan konfirmasi transaksi real-time."
+      }
+    };
+
+    let selectedPayment = "cod";
+    let discountRate = 0; // 0 to 1
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const cart = getCart();
+      if (cart.length === 0) {
+        // If empty cart, show notification or redirect to shop
+        const container = document.getElementById("summaryItemsList");
+        if (container) {
+          container.innerHTML = `
+            <div class="empty-checkout-notice">
+              <p>Keranjang belanja Anda masih kosong.</p>
+              <a href="index.html#shop" class="btn-return-shop">Belanja Sekarang &rarr;</a>
+            </div>
+          `;
+        }
+      } else {
+        renderOrderSummary();
+      }
+
+      setupPaymentOptions();
+      setupPromoCode();
+      setupOrderPlacement();
+    });
+
+    // ── Render Summary Items ──
+    function renderOrderSummary() {
+      const cart = getCart();
+      const listEl = document.getElementById("summaryItemsList");
+      const countEl = document.getElementById("summaryCount");
+      const subtotalEl = document.getElementById("subtotalVal");
+      const totalPrimaryEl = document.getElementById("totalPrimaryVal");
+      const totalIdrEl = document.getElementById("totalIdrVal");
+
+      const totalItems = getCartCount();
+      const rawSubtotal = getCartTotal();
+
+      countEl.textContent = `${totalItems} Barang`;
+
+      listEl.innerHTML = cart
+        .map(
+          (item) => `
+        <div class="summary-item-row">
+          <div class="summary-thumb">
+            <img src="${item.image}" alt="${item.name}" onerror="this.src='ASET/IMAGE/ASICS.jpg'" />
+            <span class="summary-item-qty">${item.quantity}</span>
+          </div>
+          <div class="summary-item-details">
+            <h4 class="summary-item-name">${item.name}</h4>
+            <div class="summary-item-meta">
+              <span class="summary-item-size">Ukuran: <strong>${item.size}</strong></span>
+              <span class="summary-item-price">${formatUsd(item.priceNum)}</span>
+            </div>
+          </div>
+          <div class="summary-item-total">
+            ${formatUsd(item.priceNum * item.quantity)}
+          </div>
+        </div>
+      `
+        )
+        .join("");
+
+      // Calculate totals
+      const discountAmount = rawSubtotal * discountRate;
+      const finalTotal = Math.max(0, rawSubtotal - discountAmount);
+
+      subtotalEl.textContent = formatUsd(rawSubtotal);
+      totalPrimaryEl.textContent = formatUsd(finalTotal);
+      totalIdrEl.textContent = `~ ${formatIdr(finalTotal)}`;
+
+      // Update payment details box with current total
+      renderPaymentDetails(selectedPayment, finalTotal);
+    }
+
+    // ── Payment Methods Selector ──
+    function setupPaymentOptions() {
+      const options = document.querySelectorAll(".payment-option");
+
+      options.forEach((opt) => {
+        opt.addEventListener("click", () => {
+          options.forEach((o) => o.classList.remove("active"));
+          opt.classList.add("active");
+
+          const radio = opt.querySelector('input[type="radio"]');
+          if (radio) radio.checked = true;
+
+          selectedPayment = opt.dataset.method;
+          const rawSubtotal = getCartTotal();
+          const finalTotal = Math.max(0, rawSubtotal - (rawSubtotal * discountRate));
+          renderPaymentDetails(selectedPayment, finalTotal);
+        });
+      });
+
+      // Initial render for default selected (COD)
+      const rawSubtotal = getCartTotal();
+      renderPaymentDetails(selectedPayment, rawSubtotal);
+    }
+
+    function renderPaymentDetails(methodKey, totalUsd) {
+      const box = document.getElementById("paymentDetailsBox");
+      const info = PAYMENT_DATA[methodKey];
+      if (!box || !info) return;
+
+      const totalIdr = formatIdr(totalUsd);
+
+      if (methodKey === "cod") {
+        box.innerHTML = `
+          <div class="payment-method-detail-view cod-view">
+            <div class="detail-header-tag">
+              <span class="method-tag-pill cod-pill">COD • Bayar di Tempat</span>
+              <span class="method-total-tag">Total Bayar: <strong>${totalIdr}</strong> (${formatUsd(totalUsd)})</span>
+            </div>
+            <p class="instruction-text">${info.instruction}</p>
+            <div class="cod-feature-list">
+              <div class="cod-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Paket dicek terlebih dahulu sebelum pembayaran ke kurir</span>
+              </div>
+              <div class="cod-feature-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>Bebas biaya admin / penanganan tambahan</span>
+              </div>
+            </div>
+            <div class="instruction-note">
+              <strong>Catatan:</strong> ${info.notes}
+            </div>
+          </div>
+        `;
+      } else {
+        box.innerHTML = `
+          <div class="payment-method-detail-view bank-view">
+            <div class="detail-header-tag">
+              <span class="method-tag-pill bank-pill">Transfer ${info.bankName}</span>
+              <span class="method-total-tag">Nominal Transfer: <strong>${totalIdr}</strong> (${formatUsd(totalUsd)})</span>
+            </div>
+            <p class="instruction-text">${info.instruction}</p>
+
+            <!-- Rekening Card -->
+            <div class="rekening-display-card">
+              <div class="rekening-left">
+                <span class="rek-bank-name">${info.bankName} Official Store</span>
+                <span class="rek-number" id="currentRekNum">${info.accountNumber}</span>
+                <span class="rek-holder">a.n. <strong>${info.accountName}</strong></span>
+              </div>
+              <button type="button" class="btn-copy-rek" onclick="copyRekening('${info.accountNumber}')" title="Salin Nomor Rekening">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                Salin Rekening
+              </button>
+            </div>
+
+            <div class="instruction-note">
+              <strong>Info Verifikasi:</strong> ${info.notes}
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function copyRekening(text) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast(`✓ Nomor rekening (${text}) berhasil disalin!`);
+        });
+      } else {
+        showToast(`✓ Nomor rekening: ${text}`);
+      }
+    }
+
+    // ── Promo Code ──
+    function setupPromoCode() {
+      const applyBtn = document.getElementById("applyPromoBtn");
+      const input = document.getElementById("promoInput");
+      const msg = document.getElementById("promoMessage");
+      const discountRow = document.getElementById("discountRow");
+      const discountVal = document.getElementById("discountVal");
+      const discountPercent = document.getElementById("discountPercent");
+
+      if (applyBtn && input) {
+        applyBtn.addEventListener("click", () => {
+          const code = input.value.trim().toUpperCase();
+          if (!code) {
+            showToast("Silakan masukkan kode promo!");
+            return;
+          }
+
+          if (code === "AVENUE10" || code === "DISKON10" || code === "911AVENUE") {
+            discountRate = 0.10; // 10%
+            msg.style.display = "block";
+            msg.className = "promo-msg success";
+            msg.textContent = "✓ Kode promo AVENUE10 berhasil diterapkan! Hemat 10%.";
+            discountRow.style.display = "flex";
+            discountPercent.textContent = "10%";
+
+            const rawSubtotal = getCartTotal();
+            const discountAmount = rawSubtotal * discountRate;
+            discountVal.textContent = `-${formatUsd(discountAmount)}`;
+
+            renderOrderSummary();
+            showToast("✓ Diskon 10% berhasil digunakan!");
+          } else {
+            msg.style.display = "block";
+            msg.className = "promo-msg error";
+            msg.textContent = "Kode voucher tidak valid atau telah berakhir.";
+            discountRate = 0;
+            discountRow.style.display = "none";
+            renderOrderSummary();
+          }
+        });
+      }
+    }
+
+    // ── Order Placement & Invoice Modal ──
+    function setupOrderPlacement() {
+      const orderBtn = document.getElementById("btnPlaceOrder");
+      if (!orderBtn) return;
+
+      orderBtn.addEventListener("click", () => {
+        const cart = getCart();
+        if (cart.length === 0) {
+          showToast("⚠️ Keranjang belanja Anda kosong. Silakan pilih produk terlebih dahulu!");
+          return;
+        }
+
+        // Validate shipping form
+        const name = document.getElementById("custName").value.trim();
+        const phone = document.getElementById("custPhone").value.trim();
+        const email = document.getElementById("custEmail").value.trim();
+        const city = document.getElementById("custCity").value.trim();
+        const address = document.getElementById("custAddress").value.trim();
+        const courier = document.getElementById("custCourier").value;
+        const notes = document.getElementById("custNotes").value.trim();
+
+        if (!name || !phone || !email || !city || !address) {
+          showToast("⚠️ Harap lengkapi semua data pengiriman bertanda bintang (*)");
+          // Scroll to form
+          document.getElementById("shippingForm").scrollIntoView({ behavior: "smooth" });
+          return;
+        }
+
+        // Generate Invoice ID
+        const dateStr = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+        const randStr = Math.floor(1000 + Math.random() * 9000);
+        const invoiceId = `INV-911-${dateStr}-${randStr}`;
+        const orderDate = new Date().toLocaleString("id-ID", {
+          dateStyle: "long",
+          timeStyle: "short"
+        });
+
+        const rawSubtotal = getCartTotal();
+        const discountAmount = rawSubtotal * discountRate;
+        const finalTotal = Math.max(0, rawSubtotal - discountAmount);
+        const finalTotalIdr = formatIdr(finalTotal);
+
+        const methodInfo = PAYMENT_DATA[selectedPayment];
+
+        // Render Invoice Modal
+        const invoiceContainer = document.getElementById("invoiceDetailsCard");
+        invoiceContainer.innerHTML = `
+          <div class="inv-row-highlight">
+            <div class="inv-col">
+              <span class="inv-lbl">No. Invoice</span>
+              <strong class="inv-val inv-num">${invoiceId}</strong>
+            </div>
+            <div class="inv-col text-right">
+              <span class="inv-lbl">Waktu Transaksi</span>
+              <span class="inv-val">${orderDate}</span>
+            </div>
+          </div>
+
+          <div class="inv-divider"></div>
+
+          <div class="inv-info-grid">
+            <div class="inv-info-block">
+              <h5 class="inv-block-title">Penerima &amp; Pengiriman:</h5>
+              <p><strong>${name}</strong> (${phone})</p>
+              <p>${email}</p>
+              <p class="inv-address-line">${address}, ${city}</p>
+              <p class="inv-courier-tag">Kurir: ${courier} ${notes ? `• Catatan: "${notes}"` : ''}</p>
+            </div>
+
+            <div class="inv-info-block">
+              <h5 class="inv-block-title">Metode Pembayaran:</h5>
+              <p class="inv-method-name"><strong>${methodInfo.title}</strong></p>
+              ${
+                methodInfo.accountNumber
+                  ? `
+                <div class="inv-rek-box">
+                  <span class="inv-rek-lbl">Transfer ke No. Rekening ${methodInfo.bankName}:</span>
+                  <div class="inv-rek-num-row">
+                    <strong class="inv-rek-num">${methodInfo.accountNumber}</strong>
+                    <button type="button" class="btn-copy-small" onclick="copyRekening('${methodInfo.accountNumber}')">Salin</button>
+                  </div>
+                  <span class="inv-rek-name">a.n. ${methodInfo.accountName}</span>
+                </div>
+              `
+                  : `
+                <div class="inv-cod-box">
+                  <span>Siapkan uang tunai pas sebesar <strong>${finalTotalIdr}</strong> kepada kurir saat pesanan sampai.</span>
+                </div>
+              `
+              }
+            </div>
+          </div>
+
+          <div class="inv-divider"></div>
+
+          <div class="inv-items-summary">
+            <h5 class="inv-block-title">Rincian Barang yang Dipesan:</h5>
+            <ul class="inv-items-list">
+              ${cart
+                .map(
+                  (item) => `
+                <li class="inv-item-item">
+                  <div class="inv-item-left">
+                    <span class="inv-item-name">${item.name}</span>
+                    <span class="inv-item-size-badge">Size: ${item.size}</span>
+                    <span class="inv-item-qty">x${item.quantity}</span>
+                  </div>
+                  <span class="inv-item-subtotal">${formatUsd(item.priceNum * item.quantity)}</span>
+                </li>
+              `
+                )
+                .join("")}
+            </ul>
+          </div>
+
+          <div class="inv-divider"></div>
+
+          <div class="inv-total-row">
+            <span>Total Tagihan:</span>
+            <div class="inv-total-amount">
+              <strong>${finalTotalIdr}</strong>
+              <small>(${formatUsd(finalTotal)})</small>
+            </div>
+          </div>
+        `;
+
+        // Clear cart now that order is confirmed!
+        clearCart();
+
+        // Show Modal with animation
+        const modal = document.getElementById("orderSuccessModal");
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+
+        showToast("✓ Pesanan berhasil dibuat! Simpan bukti transaksi Anda.");
+      });
+    }
+
+    function printOrSaveInvoice() {
+      window.print();
+    }
+  </script>
+</body>
+
+</html>

@@ -98,66 +98,47 @@ function initCardTiltAnimations() {
 }
 
 // ── 4. Cart UI Feedback & Counter Pulse Animation ──
-let cartCount = 0;
-
 function initCartAnimations() {
-  const addButtons = document.querySelectorAll(".btn-add-cart, .product-info button");
-  const cartBadge = document.getElementById("cartCount");
-
-  addButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      // Button press micro-animation
-      btn.style.transform = "scale(0.94)";
-      setTimeout(() => {
-        btn.style.transform = "scale(1)";
-      }, 150);
-
-      // Increment badge & trigger bounce pulse
-      cartCount++;
-      if (cartBadge) {
-        cartBadge.textContent = cartCount;
-        cartBadge.style.transition = "transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)";
-        cartBadge.style.transform = "scale(1.4) rotate(8deg)";
-        setTimeout(() => {
-          cartBadge.style.transform = "scale(1) rotate(0deg)";
-        }, 220);
-      }
-
-      // Ambil judul produk langsung dari elemen HTML card
-      const card = btn.closest(".product-card");
-      const productName = card ? card.querySelector("h3")?.textContent : "Product";
-      showToast(`✓ ${productName} added to cart`);
-    });
-  });
+  // If cart.js is loaded, it manages badge and storage
+  if (typeof updateCartUI === "function") {
+    updateCartUI();
+  }
 }
 
 // ── 5. Cart Drawer Open / Close Animation ──
 function initCartDrawer() {
-  const drawer = document.getElementById("cartModal");
-  const overlay = document.getElementById("cartOverlay");
   const openBtn = document.getElementById("cartBtn");
   const closeBtn = document.getElementById("closeCart");
+  const overlay = document.getElementById("cartOverlay");
 
-  function openDrawer() {
-    if (!drawer || !overlay) return;
-    drawer.classList.add("active");
-    overlay.classList.add("active");
-    document.body.style.overflow = "hidden";
+  if (openBtn) {
+    openBtn.addEventListener("click", () => {
+      if (typeof openCartDrawer === "function") {
+        openCartDrawer();
+      }
+    });
   }
 
-  function closeDrawer() {
-    if (!drawer || !overlay) return;
-    drawer.classList.remove("active");
-    overlay.classList.remove("active");
-    document.body.style.overflow = "";
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      if (typeof closeCartDrawer === "function") {
+        closeCartDrawer();
+      }
+    });
   }
 
-  if (openBtn) openBtn.addEventListener("click", openDrawer);
-  if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
-  if (overlay) overlay.addEventListener("click", closeDrawer);
+  if (overlay) {
+    overlay.addEventListener("click", () => {
+      if (typeof closeCartDrawer === "function") {
+        closeCartDrawer();
+      }
+    });
+  }
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeDrawer();
+    if (e.key === "Escape" && typeof closeCartDrawer === "function") {
+      closeCartDrawer();
+    }
   });
 }
 
