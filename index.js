@@ -182,7 +182,7 @@ function initMobileMenu() {
     });
   }
 
-  document.querySelectorAll(".nav-link").forEach((link) => {
+  document.querySelectorAll(".nav-link, .nav-auth-btn").forEach((link) => {
     link.addEventListener("click", () => {
       nav?.classList.remove("open");
     });

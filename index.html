@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="Style.css" />
+  <link rel="stylesheet" href="css/Style.css" />
 </head>
 
 <body>
@@ -24,19 +24,76 @@
         <a href="#shop" class="nav-link">Shop</a>
         <a href="#about" class="nav-link">About</a>
         <a href="#contact" class="nav-link">Contact</a>
+
+        <!-- ===== TOMBOL AUTH UKURAN HP (DI DALAM HAMBURGER MENU) ===== -->
+        <!-- CATATAN: Tersedia 2 tombol di bawah (Belum Login & Sudah Login/Logout). -->
+        <!-- Anda dapat menonaktifkan salah satunya (tambahkan class "auth-btn-hidden" atau style="display:none;") -->
+        <div class="auth-nav-group mobile-auth" id="authNavMobile">
+          <!-- 1. Tampilan saat BELUM login -->
+          <a href="login.html" class="nav-auth-btn nav-auth-login mobile" id="navLoginBtnMobile">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+              <polyline points="10 17 15 12 10 7"/>
+              <line x1="15" y1="12" x2="3" y2="12"/>
+            </svg>
+            <span>Login</span>
+          </a>
+
+          <!-- 2. Tampilan saat SUDAH login (Logout) -->
+          <button type="button" class="nav-auth-btn nav-auth-logout mobile" id="navLogoutBtnMobile">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+            <span>Logout</span>
+          </button>
+        </div>
       </nav>
-      <button class="cart-btn" id="cartBtn">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="9" cy="21" r="1" />
-          <circle cx="20" cy="21" r="1" />
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-        </svg>
-        <span id="cartCount">0</span>
-      </button>
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
+
+      <!-- Area Aksi Kanan (Keranjang, Auth Desktop, & Toggle Menu HP) -->
+      <div class="header-actions">
+        <!-- Tombol Keranjang -->
+        <button class="cart-btn" id="cartBtn" aria-label="Buka Keranjang">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1" />
+            <circle cx="20" cy="21" r="1" />
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+          </svg>
+          <span id="cartCount">0</span>
+        </button>
+
+        <!-- ===== TOMBOL AUTH UKURAN DESKTOP (DI SAMPING KANAN KERANJANG) ===== -->
+        <!-- CATATAN: Tersedia 2 macam button di bawah (Belum Login & Sudah Login/Logout). -->
+        <!-- Anda dapat menonaktifkan salah satu elemennya dengan class "auth-btn-hidden" atau style="display:none;" -->
+        <div class="auth-nav-group desktop-auth" id="authNavDesktop">
+          <!-- 1. Tampilan saat BELUM login -->
+          <a href="login.html" class="nav-auth-btn nav-auth-login" id="navLoginBtnDesktop" title="Masuk ke Akun">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+              <polyline points="10 17 15 12 10 7"/>
+              <line x1="15" y1="12" x2="3" y2="12"/>
+            </svg>
+            <span>Masuk</span>
+          </a>
+
+          <!-- 2. Tampilan saat SUDAH login (Logout) -->
+          <button type="button" class="nav-auth-btn nav-auth-logout" id="navLogoutBtnDesktop" title="Keluar dari Akun">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+            <span>Logout</span>
+          </button>
+        </div>
+
+        <!-- Tombol Toggle Hamburger Mobile -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -654,6 +711,7 @@
 
   <script src="products-data.js"></script>
   <script src="cart.js"></script>
+  <script src="auth-ui.js"></script>
   <script src="index.js"></script>
 </body>
 

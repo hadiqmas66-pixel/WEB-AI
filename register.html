@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daftar Akun Baru — 911 Avenue</title>
+  <meta name="description" content="Bergabung dengan 911 Avenue dan nikmati koleksi fashion pria & wanita kurasi eksklusif." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/Style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+
+<body class="auth-page-body">
+
+  <!-- ===== AMBIENT GLOW BACKGROUND ===== -->
+  <div class="auth-ambient-bg" aria-hidden="true">
+    <div class="auth-glow-orb orb-blue"></div>
+    <div class="auth-glow-orb orb-brown"></div>
+    <div class="auth-grid-overlay"></div>
+  </div>
+
+  <!-- ===== TOP BAR NAVIGATION ===== -->
+  <header class="auth-top-bar">
+    <a href="index.html" class="auth-logo" id="authLogo">
+      911<span>Avenue</span>
+    </a>
+    <a href="index.html" class="auth-back-link" id="backToHomeLink">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      <span>Kembali ke Beranda</span>
+    </a>
+  </header>
+
+  <!-- ===== MAIN AUTH CONTAINER ===== -->
+  <main class="auth-main-container">
+    <div class="auth-card register-card" id="registerCard">
+
+      <!-- Header Card -->
+      <div class="auth-header">
+        <div class="auth-emblem">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+            <circle cx="8.5" cy="7" r="4"></circle>
+            <line x1="20" y1="8" x2="20" y2="14"></line>
+            <line x1="23" y1="11" x2="17" y2="11"></line>
+          </svg>
+        </div>
+        <h1 class="auth-title">Buat Akun Baru</h1>
+        <p class="auth-subtitle">Daftar sekarang untuk menikmati penawaran eksklusif dan pengalaman belanja terbaik.</p>
+        <div class="auth-dev-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+          Halaman Register UI Terpisah Siap Dihubungkan
+        </div>
+      </div>
+
+      <!-- Alert Notification Area (Error / Success) -->
+      <div class="auth-alert auth-alert-error" id="registerAlertError" role="alert">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <span class="alert-text">Periksa kembali data pendaftaran Anda.</span>
+      </div>
+
+      <div class="auth-alert auth-alert-success" id="registerAlertSuccess" role="alert">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+        <span class="alert-text">Akun berhasil dibuat! Silakan masuk ke akun Anda.</span>
+      </div>
+
+      <!-- Form Register -->
+      <form class="auth-form" id="registerForm" novalidate>
+
+        <!-- Input Nama Lengkap -->
+        <div class="form-group">
+          <label for="registerName">Nama Lengkap</label>
+          <div class="input-container">
+            <input 
+              type="text" 
+              id="registerName" 
+              name="name" 
+              class="auth-input" 
+              placeholder="Contoh: Alex Pratama" 
+              required 
+              autocomplete="name"
+            />
+          </div>
+        </div>
+
+        <!-- Input Email & WhatsApp (2 Kolom di Desktop) -->
+        <div class="form-row-2col">
+          <div class="form-group">
+            <label for="registerEmail">Alamat Email</label>
+            <div class="input-container">
+              <input 
+                type="email" 
+                id="registerEmail" 
+                name="email" 
+                class="auth-input" 
+                placeholder="nama@email.com" 
+                required 
+                autocomplete="email"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="registerPhone">Nomor WhatsApp / HP</label>
+            <div class="input-container">
+              <input 
+                type="tel" 
+                id="registerPhone" 
+                name="phone" 
+                class="auth-input" 
+                placeholder="0812-xxxx-xxxx" 
+                autocomplete="tel"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Input Kata Sandi & Konfirmasi (2 Kolom di Desktop) -->
+        <div class="form-row-2col">
+          <div class="form-group">
+            <label for="registerPassword">Kata Sandi</label>
+            <div class="input-container">
+              <input 
+                type="password" 
+                id="registerPassword" 
+                name="password" 
+                class="auth-input has-toggle" 
+                placeholder="Minimal 6 karakter" 
+                required 
+                autocomplete="new-password"
+              />
+
+              <button type="button" class="btn-toggle-pwd" data-target="registerPassword" aria-label="Tampilkan kata sandi">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="registerConfirmPassword">Ulangi Kata Sandi</label>
+            <div class="input-container">
+              <input 
+                type="password" 
+                id="registerConfirmPassword" 
+                name="confirmPassword" 
+                class="auth-input has-toggle" 
+                placeholder="Konfirmasi sandi" 
+                required 
+                autocomplete="new-password"
+              />
+              <button type="button" class="btn-toggle-pwd" data-target="registerConfirmPassword" aria-label="Tampilkan konfirmasi sandi">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Meter Kekuatan Sandi -->
+        <div class="password-meter-wrap">
+          <div class="strength-bar-track">
+            <div class="strength-bar-fill" id="pwdStrengthFill"></div>
+          </div>
+          <div class="strength-meta">
+            <span>Kekuatan Sandi:</span>
+            <span class="strength-text" id="pwdStrengthText">-</span>
+          </div>
+        </div>
+
+        <!-- Checkbox Syarat & Ketentuan -->
+        <div class="auth-aux-row">
+          <label class="custom-checkbox-wrap" for="agreeTerms">
+            <input type="checkbox" id="agreeTerms" name="agreeTerms" required checked />
+            <span class="checkbox-custom-box">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+            <span>Saya menyetujui <a href="#" class="auth-link" onclick="event.preventDefault();">Syarat &amp; Ketentuan</a> serta Kebijakan Privasi</span>
+          </label>
+        </div>
+
+        <!-- Tombol Submit Register -->
+        <button type="submit" class="btn-auth-submit" id="btnSubmitRegister">
+          <span>Daftar Akun Baru</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+
+      </form>
+
+      <!-- Pembatas Daftar Dengan Sosial Media -->
+      <div class="auth-separator">
+        <span>atau daftar dengan</span>
+      </div>
+
+      <!-- Tombol Sosial Register -->
+      <div class="social-buttons-grid">
+        <button type="button" class="btn-social-auth" id="btnRegisterGoogle" onclick="alert('OAuth Google dapat diintegrasikan dengan Google API Console');">
+          <svg width="18" height="18" viewBox="0 0 24 24">
+            <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.8 14.8 1 12 1 7.4 1 3.5 3.6 1.6 7.4l3.7 2.9C6.2 7.3 8.8 5 12 5z"/>
+            <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/>
+            <path fill="#FBBC05" d="M5.3 14.7c-.2-.7-.4-1.5-.4-2.7 0-1.1.2-1.9.4-2.7L1.6 6.4C.6 8.3 0 10.1 0 12s.6 3.7 1.6 5.6l3.7-2.9z"/>
+            <path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.2 0-5.8-2.3-6.7-5.3L1.6 16c1.9 3.8 5.8 7 10.4 7z"/>
+          </svg>
+          <span>Google</span>
+        </button>
+
+        <button type="button" class="btn-social-auth" id="btnRegisterApple" onclick="alert('OAuth Apple dapat diintegrasikan dengan Apple Developer');">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.93-2.85-.9.04-1.99.6-2.64 1.35-.57.65-1.07 1.72-.93 2.74 1.01.08 2.02-.49 2.64-1.24z"/>
+          </svg>
+          <span>Apple ID</span>
+        </button>
+      </div>
+
+      <!-- Link Beralih ke Halaman Login -->
+      <div class="auth-footer-switch">
+        <span>Sudah memiliki akun?</span>
+        <a href="login.html" id="linkToLogin">Masuk di sini</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===== MINIMAL FOOTER ===== -->
+  <footer class="auth-page-footer">
+    <p>&copy; 2026 911 Avenue. Hak Cipta Dilindungi Undang-Undang. 
+      <a href="index.html#about">Tentang Kami</a> &bull; 
+      <a href="index.html#contact">Bantuan</a>
+    </p>
+  </footer>
+
+  <!-- Script Interaksi UI -->
+  <script src="auth-ui.js"></script>
+</body>
+
+</html>
