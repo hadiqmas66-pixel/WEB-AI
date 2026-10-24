@@ -64,6 +64,10 @@ app.get('/checkout', (req, res) => {
   res.sendFile(path.join(__dirname, 'checkout.html'));
 });
 
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin.html'));
+});
+
 // ── 3. KERANGKA ENDPOINT AUTENTIKASI (BACKEND API) ──
 
 /**
@@ -101,8 +105,8 @@ app.post('/api/auth/register', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const [result] = await db.execute(
-      `INSERT INTO users (nama, email, password, no_hp)
-   VALUES (?, ?, ?, ?)`,
+      `INSERT INTO users (nama, email, password, no_hp, role)
+   VALUES (?, ?, ?, ?, "user")`,
       [cleanName, cleanEmail, hashedPassword, no_hp || null]
     );
 
@@ -113,7 +117,8 @@ app.post('/api/auth/register', async (req, res) => {
         id: result.insertId,
         nama: cleanName,
         email: cleanEmail,
-        no_hp: no_hp || null
+        no_hp: no_hp || null,
+        role: "user"
       }
     });
 
@@ -231,6 +236,119 @@ app.get('/api/auth/me', (req, res) => {
   });
 });
 
+// ── 3.5. KERANGKA ENDPOINT PRODUK ADMIN (SIMULASI & BACKEND DATABASE) ──
+
+/**
+ * GET /api/admin/products
+ * Mengambil seluruh data produk dari tabel database MySQL
+ */
+app.get('/api/admin/products', async (req, res) => {
+  try {
+    /*
+     * TEMPAT MENGHUBUNGKAN KE DATABASE MYSQL:
+     * Ketika tabel `products` sudah Anda buat di MySQL:
+     * 
+     * const [rows] = await db.execute('SELECT * FROM products ORDER BY created_at DESC');
+     * return res.status(200).json({ success: true, data: rows });
+     */
+    return res.status(200).json({
+      success: true,
+      message: 'Mode simulasi aktif. Buat tabel `products` di MySQL untuk menyimpan secara permanen.',
+      data: []
+    });
+  } catch (error) {
+    console.error('[API Products GET Error]:', error);
+    return res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+/**
+ * PUT /api/admin/products/:id
+ * Memperbarui nama, harga, stok, dan gambar produk
+ */
+app.put('/api/admin/products/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, category, priceNum, priceIdr, stock, image } = req.body;
+
+    /*
+     * TEMPAT QUERY UPDATE MYSQL:
+     * const query = `
+     *   UPDATE products 
+     *   SET name = ?, category = ?, price_usd = ?, price_idr = ?, stock = ?, image = ?
+     *   WHERE id = ?
+     * `;
+     * await db.execute(query, [name, category, priceNum, priceIdr, stock, image, id]);
+     */
+
+    console.log(`[API Product Update] ID: ${id} diperbarui:`, { name, priceNum, stock, image });
+
+    return res.status(200).json({
+      success: true,
+      message: `Produk #${id} berhasil diperbarui (simulasi backend)`,
+      updated: { id, name, category, priceNum, priceIdr, stock, image }
+    });
+  } catch (error) {
+    console.error('[API Product PUT Error]:', error);
+    return res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+/**
+ * POST /api/admin/products
+ * Menambah produk baru ke database
+ */
+app.post('/api/admin/products', async (req, res) => {
+  try {
+    const { id, name, category, priceNum, priceIdr, stock, image, badge } = req.body;
+
+    /*
+     * TEMPAT QUERY INSERT MYSQL:
+     * const query = `
+     *   INSERT INTO products (id, name, category, price_usd, price_idr, stock, image, badge)
+     *   VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+     * `;
+     * await db.execute(query, [id, name, category, priceNum, priceIdr, stock, image, badge]);
+     */
+
+    console.log('[API Product Insert] Produk baru ditambahkan:', { id, name, stock });
+
+    return res.status(201).json({
+      success: true,
+      message: 'Produk berhasil ditambahkan (simulasi backend)',
+      product: req.body
+    });
+  } catch (error) {
+    console.error('[API Product POST Error]:', error);
+    return res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+/**
+ * DELETE /api/admin/products/:id
+ * Menghapus produk dari database
+ */
+app.delete('/api/admin/products/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    /*
+     * TEMPAT QUERY DELETE MYSQL:
+     * await db.execute('DELETE FROM products WHERE id = ?', [id]);
+     */
+
+    console.log(`[API Product Delete] ID: ${id} dihapus.`);
+
+    return res.status(200).json({
+      success: true,
+      message: `Produk #${id} berhasil dihapus (simulasi backend)`
+    });
+  } catch (error) {
+    console.error('[API Product DELETE Error]:', error);
+    return res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 // ── 4. FALLBACK 404 (HALAMAN TIDAK DITEMUKAN) ──
 app.use((req, res) => {
   res.status(404).send(`
@@ -249,4 +367,5 @@ app.listen(PORT, () => {
   console.log(` Login Page    : http://localhost:${PORT}/login.html`);
   console.log(` Register Page : http://localhost:${PORT}/register.html`);
   console.log(` Shop / Home   : http://localhost:${PORT}/index.html`);
+  console.log(` Admin Panel   : http://localhost:${PORT}/admin.html (or /admin)`);
 });

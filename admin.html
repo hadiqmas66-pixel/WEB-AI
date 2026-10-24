@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel — Kelola Produk | 911 Avenue</title>
+  <meta name="description" content="Portal Admin Panel 911 Avenue untuk mengelola nama, harga, stok, dan gambar katalog produk." />
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/Style.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+
+<body class="admin-body">
+
+  <!-- ===== AMBIENT GLOW BACKGROUND ===== -->
+  <div class="admin-ambient-bg" aria-hidden="true">
+    <div class="admin-glow-orb admin-orb-1"></div>
+    <div class="admin-glow-orb admin-orb-2"></div>
+    <div class="admin-grid-mesh"></div>
+  </div>
+
+  <!-- ====================================================================
+       STATE 1: ADMIN LOGIN GATE (TAMPIL JIKA BELUM TEROTENTIKASI)
+       ==================================================================== -->
+  <section class="admin-auth-overlay" id="adminAuthSection">
+    <div class="admin-auth-card">
+      <div class="admin-auth-brand">
+        <a href="index.html" class="admin-auth-logo">
+          911<span>Avenue</span>
+        </a>
+        <div>
+          <span class="admin-auth-tag">Admin Management Portal</span>
+        </div>
+      </div>
+
+      <div class="admin-auth-heading">
+        <h1 class="admin-auth-title">Akses Khusus Admin</h1>
+        <p class="admin-auth-desc">Masuk untuk mengelola dan memperbarui data produk toko.</p>
+      </div>
+
+      <!-- Error Alert Box -->
+      <div class="admin-alert admin-alert-error" id="adminLoginAlertError" role="alert">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <span class="alert-text">Email atau kata sandi admin salah.</span>
+      </div>
+
+      <!-- Hint Box (Sesuai Permintaan: Email "admin" & Password) -->
+      <div class="admin-alert admin-alert-hint" id="adminAuthHint" title="Klik untuk mengisi otomatis kredensial simulasi">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        <div>
+          <strong>Kredensial Simulasi:</strong><br />
+          Email: <code style="color: #60a5fa;">admin</code> | Password: <code style="color: #60a5fa;">admin123</code> atau <code style="color: #60a5fa;">********</code><br />
+          <span style="font-size: 0.76rem; text-decoration: underline; opacity: 0.9;">(Klik kotak ini untuk isi instan)</span>
+        </div>
+      </div>
+
+      <!-- Form Login Admin -->
+      <form id="adminLoginForm" novalidate>
+        <div class="admin-form-group">
+          <label class="admin-form-label" for="adminEmail">Email Admin</label>
+          <div class="admin-input-wrap">
+            <span class="admin-input-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </span>
+            <input type="text" id="adminEmail" class="admin-input" placeholder="admin" value="admin" required />
+          </div>
+        </div>
+
+        <div class="admin-form-group">
+          <label class="admin-form-label" for="adminPassword">Kata Sandi</label>
+          <div class="admin-input-wrap">
+            <span class="admin-input-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </span>
+            <input type="password" id="adminPassword" class="admin-input" placeholder="********" value="admin123" required />
+            <button type="button" class="admin-input-toggle" id="btnToggleAdminPass" aria-label="Lihat kata sandi">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="admin-btn-primary" id="btnSubmitAdminLogin">
+          <span>Masuk ke Admin Panel</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </form>
+
+      <div class="admin-auth-footer">
+        <a href="index.html" class="admin-link-back">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Kembali ke Beranda Toko</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       STATE 2: ADMIN DASHBOARD PANEL (TAMPIL JIKA TEROTENTIKASI)
+       ==================================================================== -->
+  <div class="admin-dashboard" id="adminDashboardSection" style="display: none;">
+
+    <!-- Top Sticky Admin Bar -->
+    <header class="admin-nav">
+      <div class="admin-nav-inner">
+        <div class="admin-nav-left">
+          <a href="index.html" class="admin-nav-logo">
+            911<span>Avenue</span>
+          </a>
+          <span class="admin-nav-badge">Admin Panel</span>
+          <div class="admin-sim-status">
+            <span class="admin-pulse-dot"></span>
+            <span>Mode Simulasi (Siap Sambung Database)</span>
+          </div>
+        </div>
+
+        <div class="admin-nav-right">
+          <a href="index.html" class="btn-store-link" title="Buka etalase toko pengguna">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Lihat Toko</span>
+          </a>
+
+          <div class="admin-user-chip">
+            <div class="admin-avatar">AD</div>
+            <div class="admin-user-text">admin</div>
+          </div>
+
+          <button type="button" class="btn-logout" id="adminLogoutBtn" title="Keluar dari sesi admin">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+              <polyline points="16 17 21 12 16 7"></polyline>
+              <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+            <span>Keluar</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Admin Content Container -->
+    <main class="admin-main">
+
+      <!-- Header Banner & Action Buttons -->
+      <section class="admin-header-banner">
+        <div class="admin-header-info">
+          <h1>Kelola Katalog &amp; Stok Produk</h1>
+          <p>
+            Perbarui nama produk, harga, jumlah stok, dan gambar secara langsung. Perubahan disimpan secara instan di browser dan siap dihubungkan ke tabel database MySQL Anda.
+          </p>
+        </div>
+
+        <div class="admin-header-actions">
+          <button type="button" class="btn-action-primary" onclick="openAddModal()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Tambah Produk</span>
+          </button>
+
+          <button type="button" class="btn-action-guide" onclick="openDatabaseGuideModal()" title="Lihat skema SQL tabel produk untuk MySQL">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+            </svg>
+            <span>Panduan Database MySQL</span>
+          </button>
+
+          <button type="button" class="btn-action-secondary" onclick="handleResetSimulation()" title="Kembalikan data ke awal">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+              <path d="M3 3v5h5"></path>
+            </svg>
+            <span>Reset Simulasi</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- KPI Statistics Cards Grid -->
+      <section class="admin-stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon-wrap stat-icon-blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="kpiTotalProducts">0</div>
+            <div class="stat-label">Total Produk Aktif</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrap stat-icon-amber">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="kpiTotalStock">0</div>
+            <div class="stat-label">Total Stok Unit</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrap stat-icon-warning">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="kpiLowStock">0</div>
+            <div class="stat-label">Stok Menipis (&le; 10)</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrap stat-icon-danger">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+            </svg>
+          </div>
+          <div class="stat-info">
+            <div class="stat-value" id="kpiOutStock">0</div>
+            <div class="stat-label">Stok Habis (0)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search & Filter Controls Toolbar -->
+      <section class="admin-toolbar">
+        <div class="admin-toolbar-left">
+          <div class="admin-search-wrap">
+            <span class="admin-search-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </span>
+            <input type="text" id="adminSearchInput" class="admin-search-input" placeholder="Cari nama produk atau ID..." />
+          </div>
+
+          <select id="adminFilterCategory" class="admin-filter-select" aria-label="Filter berdasarkan kategori">
+            <option value="all">Semua Kategori</option>
+            <option value="sepatu">Sepatu</option>
+            <option value="baju">Baju</option>
+            <option value="celana">Celana</option>
+            <option value="aksesoris">Aksesoris</option>
+          </select>
+
+          <select id="adminFilterStock" class="admin-filter-select" aria-label="Filter berdasarkan status stok">
+            <option value="all">Semua Status Stok</option>
+            <option value="available">Tersedia (&gt; 10)</option>
+            <option value="low">Menipis (1 - 10)</option>
+            <option value="out">Habis (0)</option>
+          </select>
+        </div>
+
+        <div class="admin-toolbar-right">
+          <span>Menampilkan <strong id="adminProductCountDisplay">0 dari 0</strong> produk</span>
+        </div>
+      </section>
+
+      <!-- Responsive Products Table Card -->
+      <section class="admin-table-card">
+        <div class="admin-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Gambar</th>
+                <th>Nama Produk &amp; ID</th>
+                <th>Kategori</th>
+                <th>Harga Jual</th>
+                <th>Stok Gudang</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="adminProductsTbody">
+              <!-- Dynamically populated via admin-products.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ====================================================================
+       MODAL 1: EDIT PRODUK (NAMA, HARGA, STOK, GAMBAR)
+       ==================================================================== -->
+  <div class="admin-modal-backdrop" id="editProductModal">
+    <div class="admin-modal">
+      <div class="admin-modal-header">
+        <div class="modal-header-titles">
+          <h3 class="admin-modal-title">Edit Isi Produk</h3>
+          <span class="product-id-tag" id="modalEditId">#id</span>
+        </div>
+        <button type="button" class="admin-modal-close" onclick="closeEditModal()" aria-label="Tutup modal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <form id="editProductForm">
+        <div class="admin-modal-body">
+
+          <!-- 1. Preview & Kontrol Gambar (Img) -->
+          <div class="image-uploader-card">
+            <div class="modal-preview-box">
+              <img id="editModalPreviewImg" src="ASET/IMAGE/ASICS.jpg" alt="Preview Gambar" class="modal-preview-img" />
+            </div>
+            <div class="uploader-controls">
+              <div class="uploader-title">Gambar Produk (Img)</div>
+              <div class="uploader-subtext">Pilih aset bawaan toko, masukkan URL/Path, atau unggah file gambar lokal.</div>
+              <label class="uploader-btn-file">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <span>Unggah File Gambar</span>
+                <input type="file" id="editProductFileImg" accept="image/*" style="display: none;" />
+              </label>
+            </div>
+          </div>
+
+          <!-- Pilihan Preset Gambar Bawaan -->
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="editProductPresetImg">Pilihan Cepat Aset Gambar</label>
+            <select id="editProductPresetImg" class="admin-filter-select" style="width: 100%;">
+              <!-- Generated via JS -->
+            </select>
+          </div>
+
+          <!-- Input Manual Path / URL Gambar -->
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="editProductImage">Path / URL Gambar</label>
+            <div class="admin-input-wrap">
+              <span class="admin-input-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+              </span>
+              <input type="text" id="editProductImage" class="admin-input" required />
+            </div>
+          </div>
+
+          <!-- 2. Nama Produk -->
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="editProductName">Nama Produk</label>
+            <div class="admin-input-wrap">
+              <span class="admin-input-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                  <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                </svg>
+              </span>
+              <input type="text" id="editProductName" class="admin-input" placeholder="Contoh: Asics GEL-Kayano 14" required />
+            </div>
+          </div>
+
+          <!-- 3. Kategori & Badge -->
+          <div class="modal-grid-2">
+            <div class="admin-form-group">
+              <label class="admin-form-label" for="editProductCategory">Kategori</label>
+              <select id="editProductCategory" class="admin-filter-select" style="width: 100%;">
+                <option value="sepatu">Sepatu</option>
+                <option value="baju">Baju</option>
+                <option value="celana">Celana</option>
+                <option value="aksesoris">Aksesoris</option>
+              </select>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-form-label" for="editProductBadge">Badge Label (Opsional)</label>
+              <input type="text" id="editProductBadge" class="admin-input" placeholder="Best Seller / Trending" style="padding-left: 14px;" />
+            </div>
+          </div>
+
+          <!-- 4. Harga & Stok (Sesuai Permintaan) -->
+          <div class="modal-grid-2">
+            <!-- Harga USD & IDR Synchronized -->
+            <div class="admin-form-group">
+              <label class="admin-form-label" for="editProductPriceUsd">
+                Harga Jual (USD) <span style="font-weight: 400; color: #94a3b8;">&bull; IDR Otomatis</span>
+              </label>
+              <div class="admin-input-wrap">
+                <span class="admin-input-icon">$</span>
+                <input type="number" step="0.5" id="editProductPriceUsd" class="admin-input" required />
+              </div>
+              <div style="font-size: 0.78rem; color: #60a5fa; margin-top: 5px;">
+                Perkiraan IDR: <strong id="editProductPriceIdrDisplay">Rp 0</strong>
+              </div>
+            </div>
+
+            <!-- Stok Barang -->
+            <div class="admin-form-group">
+              <label class="admin-form-label" for="editProductStock">
+                Jumlah Stok Unit
+              </label>
+              <div class="admin-input-wrap">
+                <span class="admin-input-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  </svg>
+                </span>
+                <input type="number" min="0" step="1" id="editProductStock" class="admin-input" required />
+              </div>
+              <div style="margin-top: 6px;">
+                Status: <span id="editModalStockStatusBadge" class="stock-status-pill status-in-stock">Tersedia</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Deskripsi Singkat -->
+          <div class="admin-form-group" style="margin-bottom: 0;">
+            <label class="admin-form-label" for="editProductDesc">Deskripsi Singkat (Opsional)</label>
+            <textarea id="editProductDesc" class="admin-input" rows="2" style="padding-left: 14px; resize: vertical;" placeholder="Deskripsi singkat produk..."></textarea>
+          </div>
+
+        </div>
+
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-action-secondary" onclick="closeEditModal()">Batal</button>
+          <button type="submit" class="btn-action-primary" id="btnSaveEditProduct">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+              <polyline points="17 21 17 13 7 13 7 21"></polyline>
+              <polyline points="7 3 7 8 15 8"></polyline>
+            </svg>
+            <span>Simpan Perubahan</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       MODAL 2: TAMBAH PRODUK BARU
+       ==================================================================== -->
+  <div class="admin-modal-backdrop" id="addProductModal">
+    <div class="admin-modal">
+      <div class="admin-modal-header">
+        <h3 class="admin-modal-title">Tambah Produk Baru</h3>
+        <button type="button" class="admin-modal-close" onclick="closeAddModal()" aria-label="Tutup modal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <form id="addProductForm">
+        <div class="admin-modal-body">
+
+          <!-- Preview & Unggah Gambar -->
+          <div class="image-uploader-card">
+            <div class="modal-preview-box">
+              <img id="addModalPreviewImg" src="ASET/IMAGE/ASICS.jpg" alt="Preview" class="modal-preview-img" />
+            </div>
+            <div class="uploader-controls">
+              <div class="uploader-title">Pilih / Unggah Gambar (Img)</div>
+              <div class="uploader-subtext">Gunakan aset yang ada atau upload gambar dari perangkat Anda.</div>
+              <label class="uploader-btn-file">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="17 8 12 3 7 8"></polyline>
+                  <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <span>Pilih File Gambar</span>
+                <input type="file" id="addProductFileImg" accept="image/*" style="display: none;" />
+              </label>
+            </div>
+          </div>
+
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="addProductPresetImg">Pilihan Preset Aset</label>
+            <select id="addProductPresetImg" class="admin-filter-select" style="width: 100%;">
+              <!-- Populated via JS -->
+            </select>
+          </div>
+
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="addProductImage">Path / URL Gambar</label>
+            <input type="text" id="addProductImage" class="admin-input" style="padding-left: 14px;" value="ASET/IMAGE/ASICS.jpg" required />
+          </div>
+
+          <div class="admin-form-group">
+            <label class="admin-form-label" for="addProductName">Nama Produk</label>
+            <input type="text" id="addProductName" class="admin-input" placeholder="Masukkan nama produk..." style="padding-left: 14px;" required />
+          </div>
+
+          <div class="modal-grid-2">
+            <div class="admin-form-group">
+              <label class="admin-form-label" for="addProductCategory">Kategori</label>
+              <select id="addProductCategory" class="admin-filter-select" style="width: 100%;">
+                <option value="sepatu">Sepatu</option>
+                <option value="baju">Baju</option>
+                <option value="celana">Celana</option>
+                <option value="aksesoris">Aksesoris</option>
+              </select>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-form-label" for="addProductBadge">Badge</label>
+              <input type="text" id="addProductBadge" class="admin-input" placeholder="New Arrival" style="padding-left: 14px;" />
+            </div>
+          </div>
+
+          <div class="modal-grid-2">
+            <div class="admin-form-group">
+              <label class="admin-form-label" for="addProductPriceUsd">Harga (USD)</label>
+              <input type="number" step="1" id="addProductPriceUsd" class="admin-input" style="padding-left: 14px;" value="100" required />
+              <div style="font-size: 0.78rem; color: #60a5fa; margin-top: 5px;">
+                Perkiraan: <strong id="addProductPriceIdrDisplay">Rp 1.550.000</strong>
+              </div>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-form-label" for="addProductStock">Stok Unit Awal</label>
+              <input type="number" min="0" step="1" id="addProductStock" class="admin-input" style="padding-left: 14px;" value="15" required />
+            </div>
+          </div>
+
+          <div class="admin-form-group" style="margin-bottom: 0;">
+            <label class="admin-form-label" for="addProductDesc">Deskripsi</label>
+            <textarea id="addProductDesc" class="admin-input" rows="2" style="padding-left: 14px; resize: vertical;" placeholder="Deskripsi singkat..."></textarea>
+          </div>
+
+        </div>
+
+        <div class="admin-modal-footer">
+          <button type="button" class="btn-action-secondary" onclick="closeAddModal()">Batal</button>
+          <button type="submit" class="btn-action-primary">Tambahkan ke Katalog</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       MODAL 3: KONFIRMASI HAPUS PRODUK
+       ==================================================================== -->
+  <div class="admin-modal-backdrop" id="deleteConfirmModal">
+    <div class="admin-modal" style="max-width: 440px;">
+      <div class="admin-modal-header">
+        <h3 class="admin-modal-title" style="color: #f87171;">Hapus Produk?</h3>
+        <button type="button" class="admin-modal-close" onclick="closeDeleteConfirmModal()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="admin-modal-body" style="text-align: center; padding: 28px 24px;">
+        <div style="width: 54px; height: 54px; border-radius: 50%; background: rgba(239, 68, 68, 0.12); color: #ef4444; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          </svg>
+        </div>
+
+        <h4 style="color: #fff; font-size: 1.1rem; margin-bottom: 8px;">
+          Yakin ingin menghapus produk ini?
+        </h4>
+        <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 12px;">
+          <strong id="deleteConfirmProdName" style="color: #fff;">Produk</strong> (<span id="deleteConfirmProdId">#id</span>) akan dihapus dari katalog simulasi.
+        </p>
+      </div>
+
+      <div class="admin-modal-footer" style="justify-content: center;">
+        <button type="button" class="btn-action-secondary" onclick="closeDeleteConfirmModal()">Batal</button>
+        <button type="button" class="btn-table-del" style="width: auto; padding: 10px 20px; font-weight: 700;" onclick="executeDeleteProduct()">
+          Ya, Hapus Produk
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       MODAL 4: PANDUAN INTEGRASI DATABASE MYSQL (UNTUK PENGEMBANG)
+       ==================================================================== -->
+  <div class="admin-modal-backdrop" id="databaseGuideModal">
+    <div class="admin-modal" style="max-width: 680px;">
+      <div class="admin-modal-header">
+        <h3 class="admin-modal-title">Panduan Menghubungkan ke Database MySQL</h3>
+        <button type="button" class="admin-modal-close" onclick="closeDatabaseGuideModal()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="admin-modal-body" style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.6;">
+        <p>
+          Sesuai permintaan Anda, antarmuka admin panel ini saat ini berjalan dalam <strong>mode simulasi aktif</strong> (data tersimpan di browser via <code>localStorage</code> sehingga Anda bisa langsung menguji edit nama, harga, stok, dan gambar).
+        </p>
+
+        <h4 style="color: #fff; margin-top: 18px; margin-bottom: 6px;">1. Skema SQL untuk Database Anda (MySQL)</h4>
+        <p>Jalankan query SQL berikut di database <code>evenue</code> (atau nama database MySQL Anda):</p>
+        
+        <div class="sql-guide-box">CREATE TABLE IF NOT EXISTS products (
+  id VARCHAR(50) PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  category VARCHAR(50) NOT NULL,
+  price_usd DECIMAL(10, 2) NOT NULL DEFAULT 0.00,
+  price_idr VARCHAR(50) NOT NULL,
+  stock INT NOT NULL DEFAULT 0,
+  image VARCHAR(255) NOT NULL,
+  badge VARCHAR(100) NULL,
+  short_desc TEXT NULL,
+  rating DECIMAL(3, 1) DEFAULT 4.8,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);</div>
+
+        <h4 style="color: #fff; margin-top: 18px; margin-bottom: 6px;">2. Endpoint API di server.js</h4>
+        <p>
+          Kami sudah menyiapkan kerangka route di file <code style="color: #60a5fa;">server.js</code> untuk endpoint:
+        </p>
+        <ul style="list-style: disc; padding-left: 20px; margin-top: 6px; color: #94a3b8;">
+          <li><code>GET /api/admin/products</code> &mdash; Mengambil daftar seluruh produk</li>
+          <li><code>PUT /api/admin/products/:id</code> &mdash; Memperbarui nama, harga, stok, gambar</li>
+          <li><code>POST /api/admin/products</code> &mdash; Menambah produk baru</li>
+          <li><code>DELETE /api/admin/products/:id</code> &mdash; Menghapus produk</li>
+        </ul>
+
+        <p style="margin-top: 14px;">
+          Ketika Anda siap memfungsikan tabel MySQL, Anda cukup mengisi query database pada endpoint tersebut!
+        </p>
+      </div>
+
+      <div class="admin-modal-footer">
+        <button type="button" class="btn-action-primary" onclick="closeDatabaseGuideModal()">Mengerti</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="admin-toast-container" id="adminToastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="products-data.js"></script>
+  <script src="admin-products.js"></script>
+</body>
+
+</html>
