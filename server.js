@@ -68,6 +68,10 @@ app.get('/admin', (req, res) => {
   res.sendFile(path.join(__dirname, 'admin.html'));
 });
 
+app.get('/settings', (req, res) => {
+  res.sendFile(path.join(__dirname, 'settings.html'));
+});
+
 // ── 3. KERANGKA ENDPOINT AUTENTIKASI (BACKEND API) ──
 
 /**

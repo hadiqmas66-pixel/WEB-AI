@@ -20,39 +20,53 @@
     <div class="header-inner">
       <a href="index.html" class="logo" id="logoLink">911<span>Avenue</span></a>
       <nav class="nav-menu" id="navMenu">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="index.html#shop" class="nav-link active">Shop</a>
-        <a href="index.html#about" class="nav-link">About</a>
-        <a href="index.html#contact" class="nav-link">Contact</a>
+        <a href="index.html" class="nav-link" data-i18n="nav_home">Home</a>
+        <a href="index.html#shop" class="nav-link active" data-i18n="nav_shop">Shop</a>
+        <a href="index.html#about" class="nav-link" data-i18n="nav_about">About</a>
+        <a href="index.html#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
+
+        <!-- ===== TOMBOL SETTING DI NAV-MENU (NAVIGASI KE LANDING PAGE SETTING) ===== -->
+        <a href="settings.html" class="nav-link nav-setting-btn" id="navSettingBtn" aria-label="Buka Pengaturan">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span data-i18n="nav_settings">Setting</span>
+        </a>
 
         <!-- ===== TOMBOL AUTH UKURAN HP (DI DALAM HAMBURGER MENU) ===== -->
-        <!-- CATATAN: Tersedia 2 tombol di bawah (Belum Login & Sudah Login/Logout). -->
-        <!-- Anda dapat menonaktifkan salah satunya (tambahkan class "auth-btn-hidden" atau style="display:none;") -->
         <div class="auth-nav-group mobile-auth" id="authNavMobile">
-          <!-- 1. Tampilan saat BELUM login -->
           <a href="login.html" class="nav-auth-btn nav-auth-login mobile" id="navLoginBtnMobile">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
               <polyline points="10 17 15 12 10 7"/>
               <line x1="15" y1="12" x2="3" y2="12"/>
             </svg>
-            <span>Masuk / Login</span>
+            <span data-i18n="nav_login">Masuk / Login</span>
           </a>
 
-          <!-- 2. Tampilan saat SUDAH login (Logout) -->
-          <button type="button" class="nav-auth-btn nav-auth-logout mobile" id="navLogoutBtnMobile" onclick="alert('Logout berhasil. Anda dapat menonaktifkan tombol ini atau tombol Masuk sesuai kebutuhan.');">
+          <button type="button" class="nav-auth-btn nav-auth-logout mobile" id="navLogoutBtnMobile">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
               <polyline points="16 17 21 12 16 7"/>
               <line x1="21" y1="12" x2="9" y2="12"/>
             </svg>
-            <span>Logout (Keluar)</span>
+            <span data-i18n="nav_logout">Logout (Keluar)</span>
           </button>
         </div>
       </nav>
 
-      <!-- Area Aksi Kanan (Keranjang, Auth Desktop, & Toggle Menu HP) -->
+      <!-- Area Aksi Kanan (Setting, Keranjang, Auth Desktop, & Toggle Menu HP) -->
       <div class="header-actions">
+        <!-- Tombol Setting Navbar (Navigasi ke settings.html) -->
+        <a href="settings.html" class="settings-btn" id="headerSettingBtn" aria-label="Buka Halaman Pengaturan" title="Pengaturan">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span class="settings-lang-badge" id="settingCurrentLangBadge">ID</span>
+        </a>
+
         <!-- Tombol Keranjang -->
         <button class="cart-btn" id="cartBtn" aria-label="Buka Keranjang">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -65,27 +79,23 @@
         </button>
 
         <!-- ===== TOMBOL AUTH UKURAN DESKTOP (DI SAMPING KANAN KERANJANG) ===== -->
-        <!-- CATATAN: Tersedia 2 macam button di bawah (Belum Login & Sudah Login/Logout). -->
-        <!-- Anda dapat menonaktifkan salah satu elemennya dengan class "auth-btn-hidden" atau style="display:none;" -->
         <div class="auth-nav-group desktop-auth" id="authNavDesktop">
-          <!-- 1. Tampilan saat BELUM login -->
           <a href="login.html" class="nav-auth-btn nav-auth-login" id="navLoginBtnDesktop" title="Masuk ke Akun">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
               <polyline points="10 17 15 12 10 7"/>
               <line x1="15" y1="12" x2="3" y2="12"/>
             </svg>
-            <span>Masuk</span>
+            <span data-i18n="nav_login">Masuk</span>
           </a>
 
-          <!-- 2. Tampilan saat SUDAH login (Logout) -->
-          <button type="button" class="nav-auth-btn nav-auth-logout" id="navLogoutBtnDesktop" title="Keluar dari Akun" onclick="alert('Logout berhasil. Anda dapat menonaktifkan tombol ini atau tombol Masuk sesuai kebutuhan.');">
+          <button type="button" class="nav-auth-btn nav-auth-logout" id="navLogoutBtnDesktop" title="Keluar dari Akun">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
               <polyline points="16 17 21 12 16 7"/>
               <line x1="21" y1="12" x2="9" y2="12"/>
             </svg>
-            <span>Logout</span>
+            <span data-i18n="nav_logout">Logout</span>
           </button>
         </div>
 
@@ -311,6 +321,7 @@
   <!-- Scripts -->
   <script src="products-data.js"></script>
   <script src="cart.js"></script>
+  <script src="settings.js"></script>
   <script>
     // ── Global Toast ──
     function showToast(message) {

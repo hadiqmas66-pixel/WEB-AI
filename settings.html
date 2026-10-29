@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pengaturan — 911 Avenue Official Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/Style.css" />
+</head>
+
+<body class="settings-page-body">
+
+  <!-- ===== HEADER NAVBAR (TEMA KONSISTEN DENGAN WEB UTAMA) ===== -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="index.html" class="logo" id="logoLink">911<span>Avenue</span></a>
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link" data-i18n="nav_home">Home</a>
+        <a href="index.html#shop" class="nav-link" data-i18n="nav_shop">Shop</a>
+        <a href="index.html#about" class="nav-link" data-i18n="nav_about">About</a>
+        <a href="index.html#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
+
+        <!-- ===== TOMBOL SETTING DI NAV-MENU (AKTIF) ===== -->
+        <a href="settings.html" class="nav-link nav-setting-btn active" id="navSettingBtn" aria-label="Buka Pengaturan">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+            </path>
+          </svg>
+          <span data-i18n="nav_settings">Setting</span>
+        </a>
+
+        <!-- ===== TOMBOL AUTH UKURAN HP ===== -->
+        <div class="auth-nav-group mobile-auth" id="authNavMobile">
+          <a href="login.html" class="nav-auth-btn nav-auth-login mobile" id="navLoginBtnMobile">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+              <polyline points="10 17 15 12 10 7" />
+              <line x1="15" y1="12" x2="3" y2="12" />
+            </svg>
+            <span data-i18n="nav_login">Masuk</span>
+          </a>
+          <button type="button" class="nav-auth-btn nav-auth-logout mobile" id="navLogoutBtnMobile">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            <span data-i18n="nav_logout">Logout</span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Area Aksi Kanan (Setting, Keranjang, Auth Desktop, & Toggle Mobile) -->
+      <div class="header-actions">
+        <!-- Tombol Setting Navbar (Aktif) -->
+        <a href="settings.html" class="settings-btn active" id="headerSettingBtn" aria-label="Halaman Pengaturan"
+          title="Pengaturan">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+            </path>
+          </svg>
+          <span class="settings-lang-badge" id="settingCurrentLangBadge">ID</span>
+        </a>
+
+        <!-- Tombol Keranjang -->
+        <button class="cart-btn" id="cartBtn" aria-label="Buka Keranjang">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1" />
+            <circle cx="20" cy="21" r="1" />
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+          </svg>
+          <span id="cartCount">0</span>
+        </button>
+
+        <!-- Tombol Auth Desktop -->
+        <div class="auth-nav-group desktop-auth" id="authNavDesktop">
+          <a href="login.html" class="nav-auth-btn nav-auth-login" id="navLoginBtnDesktop" title="Masuk ke Akun">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+              <polyline points="10 17 15 12 10 7" />
+              <line x1="15" y1="12" x2="3" y2="12" />
+            </svg>
+            <span data-i18n="nav_login">Masuk</span>
+          </a>
+
+          <button type="button" class="nav-auth-btn nav-auth-logout" id="navLogoutBtnDesktop" title="Keluar dari Akun">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            <span data-i18n="nav_logout">Logout</span>
+          </button>
+        </div>
+
+        <!-- Tombol Toggle Hamburger Mobile -->
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== CART DRAWER (MODAL KERANJANG) ===== -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartModal">
+    <div class="cart-drawer-header">
+      <h2 data-i18n="cart_title">Your Cart</h2>
+      <button id="closeCart" class="close-btn" aria-label="Close cart">&times;</button>
+    </div>
+    <ul class="cart-items" id="cartItems"></ul>
+    <div class="cart-footer" id="cartFooter">
+      <div class="cart-total"><span data-i18n="cart_total_label">Total:</span> <strong id="cartTotal">$0.00</strong></div>
+      <button class="checkout-btn" id="checkoutBtn" data-i18n="cart_checkout_btn">Checkout</button>
+    </div>
+  </aside>
+
+  <!-- ===== HERO / BANNER LANDING PAGE SETTING ===== -->
+  <section class="settings-hero">
+    <div class="settings-hero-glow"></div>
+    <div class="settings-hero-content">
+      <!-- Breadcrumb -->
+      <nav class="settings-breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html" data-i18n="breadcrumb_home">Beranda</a>
+        <span class="sep">&rsaquo;</span>
+        <span class="current" data-i18n="breadcrumb_settings">Pengaturan</span>
+      </nav>
+
+      <span class="settings-hero-tag" data-i18n="settings_page_tag">Pusat Kontrol Akun &amp; Preferensi</span>
+      <h1 class="settings-hero-title" data-i18n="settings_page_title">Pengaturan <em>911 Avenue</em></h1>
+      <p class="settings-hero-sub" data-i18n="settings_page_sub">
+        Kelola alamat pengiriman pesanan dan preferensi bahasa belanja Anda untuk pengalaman terbaik.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== KONTEN UTAMA LANDING PAGE SETTING ===== -->
+  <main class="settings-main-container">
+    <div class="settings-cards-grid">
+
+      <!-- ==============================================
+           1. MENU INPUT ALAMAT
+           (Hanya ada input alamat dan button input)
+           ============================================== -->
+      <section class="setting-card address-card" id="addressSection">
+        <div class="setting-card-header">
+          <div class="card-icon-badge address-icon-badge">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+          </div>
+          <div>
+            <div class="card-category-badge" data-i18n="address_menu_badge">Pengiriman</div>
+            <h2 class="card-title" data-i18n="address_card_title">Menu Input Alamat</h2>
+            <p class="card-desc" data-i18n="address_card_desc">
+              Alamat ini akan otomatis digunakan sebagai tujuan pengiriman saat Anda melakukan checkout pesanan.
+            </p>
+          </div>
+        </div>
+
+        <div class="setting-card-body">
+          <!-- Form Input Alamat (Hanya ada input alamat dan button input) -->
+          <form class="landing-address-form" onsubmit="event.preventDefault(); handleSaveAddress();">
+            <div class="form-input-container">
+              <label for="settingAddressInput" class="setting-field-label" data-i18n="setting_address_title">
+                Input Alamat
+              </label>
+              <div class="textarea-wrapper">
+                <svg class="field-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <textarea id="settingAddressInput" class="landing-address-textarea" rows="3"
+                  placeholder="Masukkan alamat pengiriman lengkap (Jalan, RT/RW, No. Rumah, Kota, Provinsi)..."
+                  data-i18n-placeholder="setting_address_placeholder" autocomplete="street-address" required></textarea>
+              </div>
+            </div>
+
+            <!-- Button Input Alamat -->
+            <button type="button" id="btnInputAddress" class="btn-primary-action landing-btn-address">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span data-i18n="setting_btn_input_address">Input Alamat</span>
+            </button>
+          </form>
+
+          <!-- Tampilan Status Alamat yang Sudah Tersimpan -->
+          <div class="landing-saved-address-box" id="landingSavedAddressCard" style="display: none;">
+            <div class="saved-box-header">
+              <span class="saved-status-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span data-i18n="setting_address_saved">Alamat Tersimpan Saat Ini:</span>
+              </span>
+            </div>
+            <p class="saved-address-content" id="landingSavedAddressText"></p>
+          </div>
+
+          <p class="address-empty-notice" id="landingAddressEmptyNotice" data-i18n="address_status_empty">
+            Belum ada alamat yang tersimpan. Silakan masukkan alamat Anda di atas.
+          </p>
+
+          <!-- Catatan Tips Ringan -->
+          <div class="setting-tips-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <div>
+              <strong data-i18n="address_tips_title">Tips Alamat:</strong>
+              <span data-i18n="address_tips_desc">
+                Pastikan menyertakan patokan lokasi atau nomor rumah yang jelas untuk memudahkan kurir mengantarkan paket Anda.
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==============================================
+           2. MENU PENGATURAN BAHASA
+           (2 Pilihan Bahasa: Indonesia & Bahasa Inggris)
+           ============================================== -->
+      <section class="setting-card language-card" id="languageSection">
+        <div class="setting-card-header">
+          <div class="card-icon-badge language-icon-badge">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+          </div>
+          <div>
+            <div class="card-category-badge badge-warm" data-i18n="lang_menu_badge">Lokalisasi</div>
+            <h2 class="card-title" data-i18n="lang_card_title">Menu Pengaturan Bahasa</h2>
+            <p class="card-desc" data-i18n="lang_card_desc">
+              Pilih bahasa tampilan yang Anda inginkan. Teks dan antarmuka toko akan langsung diperbarui.
+            </p>
+          </div>
+        </div>
+
+        <div class="setting-card-body">
+          <div class="landing-language-options-grid">
+
+            <!-- Pilihan 1: Indonesia -->
+            <button type="button" class="landing-lang-card active" data-lang="id" id="langChoiceId">
+              <div class="lang-flag-wrapper">
+                <span class="flag-icon">🇮🇩</span>
+              </div>
+              <div class="lang-info-content">
+                <div class="lang-title-row">
+                  <h3 class="lang-title" data-i18n="setting_lang_id">Indonesia</h3>
+                  <span class="lang-active-indicator-tag" data-i18n="lang_badge_active">Aktif</span>
+                </div>
+                <p class="lang-desc" data-i18n="lang_id_sub">Gunakan Bahasa Indonesia sebagai bahasa utama</p>
+              </div>
+              <div class="lang-radio-check">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+            </button>
+
+            <!-- Pilihan 2: Bahasa Inggris -->
+            <button type="button" class="landing-lang-card" data-lang="en" id="langChoiceEn">
+              <div class="lang-flag-wrapper">
+                <span class="flag-icon">🇬🇧</span>
+              </div>
+              <div class="lang-info-content">
+                <div class="lang-title-row">
+                  <h3 class="lang-title" data-i18n="setting_lang_en">English</h3>
+                  <span class="lang-active-indicator-tag" data-i18n="lang_badge_active">Active</span>
+                </div>
+                <p class="lang-desc" data-i18n="lang_en_sub">Use English as the primary site language</p>
+              </div>
+              <div class="lang-radio-check">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+            </button>
+
+          </div>
+
+          <!-- Ringkasan Info Preferensi -->
+          <div class="landing-info-banner">
+            <div class="info-banner-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                </polygon>
+              </svg>
+            </div>
+            <div class="info-banner-text">
+              <h4 data-i18n="account_pref_title">Informasi Sistem</h4>
+              <p data-i18n="account_pref_desc">
+                Preferensi Anda disimpan secara otomatis di browser dan tersinkronisasi langsung ke sistem checkout.
+              </p>
+            </div>
+          </div>
+
+          <!-- Tombol Navigasi Cepat -->
+          <div class="landing-nav-actions">
+            <a href="index.html" class="btn-outline-landing" data-i18n="btn_back_home">
+              &larr; Kembali ke Beranda
+            </a>
+            <a href="index.html#shop" class="btn-primary-action" data-i18n="btn_go_shop">
+              Mulai Belanja &rarr;
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ===== FOOTER (TEMA KONSISTEN DENGAN WEB UTAMA) ===== -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">911<span>Avenue</span></a>
+        <p data-i18n="footer_tagline">Premium fashion &amp; accessories since 2024.</p>
+      </div>
+      <div class="footer-links">
+        <h4 data-i18n="footer_quick_links">Quick Links</h4>
+        <a href="index.html" data-i18n="nav_home">Home</a>
+        <a href="index.html#shop" data-i18n="nav_shop">Shop</a>
+        <a href="index.html#about" data-i18n="nav_about">About</a>
+        <a href="index.html#contact" data-i18n="nav_contact">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h4 data-i18n="footer_support">Support</h4>
+        <a href="#">FAQ</a>
+        <a href="#">Shipping</a>
+        <a href="#">Returns</a>
+        <a href="#">Privacy Policy</a>
+        <a href="admin.html" style="color: #60a5fa; display: inline-flex; align-items: center; gap: 4px;">
+          <span data-i18n="footer_admin">Panel Admin</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-i18n="footer_rights">&copy; 2026 911 Avenue Official Store. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="products-data.js"></script>
+  <script src="cart.js"></script>
+  <script src="auth-ui.js"></script>
+  <script src="settings.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Cart Drawer Trigger
+      const openBtn = document.getElementById("cartBtn");
+      const closeBtn = document.getElementById("closeCart");
+      const overlay = document.getElementById("cartOverlay");
+
+      if (openBtn && typeof openCartDrawer === "function") {
+        openBtn.addEventListener("click", openCartDrawer);
+      }
+      if (closeBtn && typeof closeCartDrawer === "function") {
+        closeBtn.addEventListener("click", closeCartDrawer);
+      }
+      if (overlay && typeof closeCartDrawer === "function") {
+        overlay.addEventListener("click", closeCartDrawer);
+      }
+
+      // Mobile Hamburger Menu
+      const mobileToggle = document.getElementById("mobileToggle");
+      const navMenu = document.getElementById("navMenu");
+      if (mobileToggle && navMenu) {
+        mobileToggle.addEventListener("click", () => {
+          navMenu.classList.toggle("open");
+        });
+        navMenu.querySelectorAll(".nav-link, .nav-auth-btn").forEach((link) => {
+          link.addEventListener("click", () => navMenu.classList.remove("open"));
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
